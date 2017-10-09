@@ -144,7 +144,7 @@ centos6.5静默安装oracle
    net.core.rmem_default = 262144
    net.core.rmem_max = 4194304
    net.core.wmem_default = 262144
-   net.core.wmem_max = 1048586
+   net.core.wmem_max = 1048576
    ```
 
 10. 执行命令使配置生效
