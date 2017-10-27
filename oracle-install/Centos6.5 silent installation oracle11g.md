@@ -107,19 +107,19 @@ centos6.5静默安装oracle
 
 10. 执行命令使配置生效
 
-   `# /sbin/sysctl -p`
+  `# /sbin/sysctl -p`
 
-   如果出现以下的错误，
+  如果出现以下的错误，
 
-   error: "net.bridge.bridge-nf-call-ip6tables" is an unknown key
+  error: "net.bridge.bridge-nf-call-ip6tables" is an unknown key
 
-   error: "net.bridge.bridge-nf-call-iptables" is an unknown key
+  error: "net.bridge.bridge-nf-call-iptables" is an unknown key
 
-   error: "net.bridge.bridge-nf-call-arptables" is an unknown key
+  error: "net.bridge.bridge-nf-call-arptables" is an unknown key
 
-     解决方法如下：
+    解决方法如下：
 
-   `# modprobe bridge`
+  `# modprobe bridge`
 
 11. 复制响应文件
 
@@ -435,13 +435,13 @@ centos6.5静默安装oracle
     # using the entries below.						      #	
     #                                                                             #
     ###############################################################################
-    
+
     #------------------------------------------------------------------------------
     # This variable is to be set to false if automated backup is not required. Else 
     # this can be set to true.
     #------------------------------------------------------------------------------
     oracle.install.db.config.starterdb.automatedBackup.enable=false
-    
+
     #------------------------------------------------------------------------------
     # Regardless of the type of storage that is chosen for backup and recovery, if 
     # automated backups are enabled, a job will be scheduled to run daily at
@@ -449,7 +449,7 @@ centos6.5静默安装oracle
     # user that is specified in this variable.
     #------------------------------------------------------------------------------
     oracle.install.db.config.starterdb.automatedBackup.osuid=
-    
+
     #-------------------------------------------------------------------------------
     # Regardless of the type of storage that is chosen for backup and recovery, if 
     # automated backups are enabled, a job will be scheduled to run daily at
@@ -458,7 +458,7 @@ centos6.5静默安装oracle
     # above operating system user.
     #-------------------------------------------------------------------------------
     oracle.install.db.config.starterdb.automatedBackup.ospwd=
-    
+
     #-------------------------------------------------------------------------------
     # Specify the type of storage to use for the database.
     # It can be one of the following:
@@ -466,7 +466,7 @@ centos6.5静默安装oracle
     # - ASM_STORAGE
     #------------------------------------------------------------------------------
     oracle.install.db.config.starterdb.storageType=FILE_SYSTEM_STORAGE
-    
+
     #-------------------------------------------------------------------------------
     # Specify the database file location which is a directory for datafiles, control
     # files, redo logs.         
@@ -474,42 +474,42 @@ centos6.5静默安装oracle
     # Applicable only when oracle.install.db.config.starterdb.storage=FILE_SYSTEM 
     #-------------------------------------------------------------------------------
     oracle.install.db.config.starterdb.fileSystemStorage.dataLocation=/opt/oracle/oradata
-    
+
     #-------------------------------------------------------------------------------
     # Specify the backup and recovery location.
     #
     # Applicable only when oracle.install.db.config.starterdb.storage=FILE_SYSTEM 
     #-------------------------------------------------------------------------------
     oracle.install.db.config.starterdb.fileSystemStorage.recoveryLocation=/opt/oracle/dbrecovery
-    
+
     #-------------------------------------------------------------------------------
     # Specify the existing ASM disk groups to be used for storage.
     #
     # Applicable only when oracle.install.db.config.starterdb.storage=ASM
     #-------------------------------------------------------------------------------
     oracle.install.db.config.asm.diskGroup=
-    
+
     #-------------------------------------------------------------------------------
     # Specify the password for ASMSNMP user of the ASM instance.                  
     #
     # Applicable only when oracle.install.db.config.starterdb.storage=ASM_SYSTEM 
     #-------------------------------------------------------------------------------
     oracle.install.db.config.asm.ASMSNMPPassword=
-    
+
     #------------------------------------------------------------------------------
     # Specify the My Oracle Support Account Username.
     #
     #  Example   : MYORACLESUPPORT_USERNAME=metalink
     #------------------------------------------------------------------------------
     MYORACLESUPPORT_USERNAME=
-    
+
     #------------------------------------------------------------------------------
     # Specify the My Oracle Support Account Username password.
     #
     # Example    : MYORACLESUPPORT_PASSWORD=password
     #------------------------------------------------------------------------------
     MYORACLESUPPORT_PASSWORD=
-    
+
     #------------------------------------------------------------------------------
     # Specify whether to enable the user to set the password for
     # My Oracle Support credentials. The value can be either true or false.
@@ -518,7 +518,7 @@ centos6.5静默安装oracle
     # Example    : SECURITY_UPDATES_VIA_MYORACLESUPPORT=true
     #------------------------------------------------------------------------------
     SECURITY_UPDATES_VIA_MYORACLESUPPORT=false
-    
+
     #------------------------------------------------------------------------------
     # Specify whether user wants to give any proxy details for connection. 
     # The value can be either true or false. If left blank it will be assumed
@@ -527,21 +527,21 @@ centos6.5静默安装oracle
     # Example    : DECLINE_SECURITY_UPDATES=false
     #------------------------------------------------------------------------------(必须为true)
     DECLINE_SECURITY_UPDATES=true
-    
+
     #------------------------------------------------------------------------------
     # Specify the Proxy server name. Length should be greater than zero.
     #
     # Example    : PROXY_HOST=proxy.domain.com 
     #------------------------------------------------------------------------------
     PROXY_HOST=
-    
+
     #------------------------------------------------------------------------------
     # Specify the proxy port number. Should be Numeric and atleast 2 chars.
     #
     # Example    : PROXY_PORT=25 
     #------------------------------------------------------------------------------
     PROXY_PORT=
-    
+
     #------------------------------------------------------------------------------
     # Specify the proxy user name. Leave PROXY_USER and PROXY_PWD 
     # blank if your proxy server requires no authentication.
@@ -549,7 +549,7 @@ centos6.5静默安装oracle
     # Example    : PROXY_USER=username 
     #------------------------------------------------------------------------------
     PROXY_USER=
-    
+
     #------------------------------------------------------------------------------
     # Specify the proxy password. Leave PROXY_USER and PROXY_PWD  
     # blank if your proxy server requires no authentication.
@@ -557,7 +557,7 @@ centos6.5静默安装oracle
     # Example    : PROXY_PWD=password 
     #------------------------------------------------------------------------------
     PROXY_PWD=
-    ​```
+    ```
 
 14. 授权`$ chmod 777 /opt/oracle/db_install.rsp`
 
