@@ -426,8 +426,6 @@ centos6.5静默安装oracle
     # Specify the SMTP server used for email notifications.
     #-------------------------------------------------------------------------------
     oracle.install.db.config.starterdb.dbcontrol.SMTPServer=
-    ```
-
 
     ###############################################################################
     #                                                                             #
