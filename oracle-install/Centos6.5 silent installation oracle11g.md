@@ -607,5 +607,80 @@ centos6.5静默安装oracle
     lsnrctl status
     ```
 
-    ​
+    最后执行修改processes和sessions需要注意，此参数与Oracle的sga设置相关，调整为对应合理的大小，设置过大，如内存位1024M，按照如上设置会出现关闭数据库实例后无法启动，执行startup报错`ORA-00838: Specified value of MEMORY_TARGET is too small, needs to be at least xxxxM`的情况。
 
+    若出现上述问题，请根据以下方式解决，前提安装时设置内存已经为检测最大可用内存，此时不可以参照网上修改内存大小来设置，因为已经超过允许使用最大内存，需要修改spfile的参数，由于spfile的内容为二进制，需要工具pfile来重新修改使之生效。在SQL装填下输入
+
+    ```sql
+    SQL>create pfile=’/opt/oracle/backup.init’ from spfile;
+    ```
+
+    提示创建成功后，在另一个窗口中vi改文件，找到执行命令设置错的参数改正过来
+
+    ```ini
+    orcl.__db_cache_size=390070272
+    orcl.__java_pool_size=4194304
+    orcl.__large_pool_size=12582912
+    orcl.__oracle_base='/opt/oracle'#ORACLE_BASE set from environment
+    orcl.__pga_aggregate_target=377487360
+    orcl.__sga_target=566231040
+    orcl.__shared_io_pool_size=0
+    orcl.__shared_pool_size=146800640
+    orcl.__streams_pool_size=4194304
+    *.audit_file_dest='/opt/oracle/admin/orcl/adump'
+    *.audit_trail='db'
+    *.compatible='11.2.0.4.0'
+    *.control_files='/opt/oracle/oradata/orcl/control01.ctl','/opt/oracle/fast_recovery_area/orcl/control02.ctl'
+    *.db_block_size=8192
+    *.db_domain=''
+    *.db_name='orcl'
+    *.db_recovery_file_dest='/opt/oracle/fast_recovery_area'
+    *.db_recovery_file_dest_size=4353687552
+    *.diagnostic_dest='/opt/oracle'
+    *.dispatchers='(PROTOCOL=TCP) (SERVICE=orclXDB)'
+    *.memory_target=943718400
+    *.open_cursors=300
+    *.processes=2000
+    *.remote_login_passwordfile='EXCLUSIVE'
+    *.sessions=2200
+    *.undo_tablespace='UNDOTBS1'
+    ```
+
+    然后在SQL窗口中执行` Create spfile from pfile='/opt/oracle/backup.init' ;`然后提示成功后执行startup即可成功。
+
+19. 完全删除Oracle安装程序
+
+
+    如果因为操作不当或者环境有问题，导致安装有异常或安装失败的，需重新卸载，可以在不重装操作系统的情况下，甚至在确保基础配置正确的前提下，用户以及用户组机器相关配置保留下，只把错误的程序和脚本删除，重新执行静默安装即可，需要按照如下几部操作
+
+    + 停止数据库服务以及监听服务
+
+      shutdown immediate;
+
+      lsnrctl stop;
+
+    + 删除**/usr/local/bin**下的三个文件
+
+      rm -rf coraenv/dbhome/oraenv
+
+    + 删除**/etc**下的两个文件
+
+      rm -rf oraInst.loc/oratab
+
+    + 删掉**/opt**下的一个目录(根据名称全局搜索，可能位置不在opt)
+
+      rm -rf ORCLfmap
+
+    + 删除oracle安装文件夹下的所有文件，因为响应文件db_install.rsp已经配置好，可以提前将响应文件移动到其他目录之后重新根据相应步骤重新执行安装脚本即可
+
+      rm -rf /opt/oracle 
+
+    + 删除用户(非必须，如果需要)
+
+      userdel -r oracle
+
+      删除用户组
+
+      groupdel oinstall
+
+      groupdel dba
