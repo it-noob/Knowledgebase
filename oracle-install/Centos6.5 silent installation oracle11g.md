@@ -607,9 +607,9 @@ centos6.5静默安装oracle
     lsnrctl status
     ```
 
-    最后执行修改processes和sessions需要注意，此参数与Oracle的sga设置相关，调整为对应合理的大小，设置过大，如内存位1024M，按照如上设置会出现关闭数据库实例后无法启动，执行startup报错`ORA-00838: Specified value of MEMORY_TARGET is too small, needs to be at least xxxxM`的情况。
+    最后执行修改processes和sessions需要注意，此参数与Oracle的sga设置相关，调整为对应合理的大小，设置过大，如内存为1024M，按照如上设置会出现关闭数据库实例后无法启动，执行startup报错`ORA-00838: Specified value of MEMORY_TARGET is too small, needs to be at least xxxxM`的情况。
 
-    若出现上述问题，请根据以下方式解决，前提安装时设置内存已经为检测最大可用内存，此时不可以参照网上修改内存大小来设置，因为已经超过允许使用最大内存，需要修改spfile的参数，由于spfile的内容为二进制，需要工具pfile来重新修改使之生效。在SQL装填下输入
+    若出现上述问题，请根据以下方式解决，前提安装时设置内存已经为检测最大可用内存，此时不可以参照网上修改内存大小来设置，因为已经超过允许使用最大内存，需要修改spfile的参数，由于spfile的内容为二进制，需要根据pfile来重新修改使之生效。在SQL状态下输入
 
     ```sql
     SQL>create pfile=’/opt/oracle/backup.init’ from spfile;
