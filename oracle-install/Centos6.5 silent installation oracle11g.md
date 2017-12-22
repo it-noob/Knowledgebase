@@ -14,26 +14,15 @@ centos6.5静默安装oracle
 
    `# unzip linux.x64_11gR2_database_2of2.zip`
 
-3. 安装所需要的包，包不要版本号，通过yum进行安装，具体的版本号是根据系统版本来决定需要的版本号是什么，通过输入版本号前的包名会自动找到和系统相符的包。执行以下命令一次性安装完成，如果无法上网只能一个个下载再上传安装了，不作讨论。对于安装时可以先检查要的包是否已安装，已安装的包可以不用再安装了，检查命令 `rpm -qa | grep binutils`
+3. 安装所需要的包，包不要版本号，通过yum进行安装，具体的版本号是根据系统版本来决定需要的版本号是什么，通过输入版本号前的包名会自动找到和系统相符的包。执行以下命令一次性安装完成，如果无法上网只能一个个下载再上传安装了，不作讨论。对于安装时可以先检查要的包是否已安装，已安装的包可以不用再安装了，检查命令
 
    ```shell
-   rpm -q \
-   binutils \
-   compat-libstdc++-33 \
-   compat-libcap1 \
-   gcc \
-   gcc-c++ \
-   glibc \
-   glibc-devel \
-   ksh \
-   libgcc \
-   libstdc++ \
-   libstdc++-devel \
-   libaio \
-   libaio-devel \
-   make \
-   elfutils-libelf-devel \
-   sysstat | grep "not installed"
+   rpm -q binutils compat-libstdc++-33 compat-libstdc++-33.i686 elfutils-libelf elfutils-libelf-devel gcc gcc-c++ glibc glibc.i686 glibc-common glibc-devel glibc-devel.i686 glibc-headers ksh libaio libaio.i686 libaio-devel libaio-devel.i686 libgcc libgcc.i686 libstdc++ libstdc++.i686 libstdc++-devel make sysstat unixODBC unixODBC-devel unzip sysstat | grep "not installed"
+   ```
+   安装命令
+
+   ```Shell
+   yum -y install binutils compat-libstdc++-33 compat-libstdc++-33.i686 elfutils-libelf elfutils-libelf-devel gcc gcc-c++ glibc glibc.i686 glibc-common glibc-devel glibc-devel.i686 glibc-headers ksh libaio libaio.i686 libaio-devel libaio-devel.i686 libgcc libgcc.i686 libstdc++ libstdc++.i686 libstdc++-devel make sysstat unixODBC unixODBC-devel unzip
    ```
 
 4. 创建用户组，并修改oracle用户登录密码
