@@ -78,7 +78,7 @@ centos6.5静默安装oracle
 9. 配置Linux内核参数
 
    ```shell
-   # vi/etc/sysctl.conf
+   # vi /etc/sysctl.conf
    ---将以下段添加到上述文件中，添加时请将文件中原有kernel.shmmax 和kernel.shmmni注释，以下值也可以先通过查询本系统参数将其填入
 
    fs.aio-max-nr = 1048576
